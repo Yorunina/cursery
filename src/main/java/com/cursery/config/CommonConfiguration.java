@@ -8,6 +8,7 @@ import java.util.List;
 public class CommonConfiguration
 {
     public final ForgeConfigSpec.ConfigValue<List<? extends String>> excludedCUrses;
+    public final ForgeConfigSpec.ConfigValue<List<? extends String>> excludedItems;
     public final ForgeConfigSpec.ConfigValue<List<? extends String>> disabledItems;
     public final ForgeConfigSpec.ConfigValue<Boolean>                excludeTreasure;
     public final ForgeConfigSpec.ConfigValue<Boolean>                debugTries;
@@ -29,6 +30,12 @@ public class CommonConfiguration
         excludedCUrses = builder.defineList("excludedCUrses",
           List.of("minecraft:vanishing_curse")
           , e -> e instanceof String && ((String) e).contains(":"));
+
+        builder.comment(
+                "Add item which will be not cursed");
+        excludedItems = builder.defineList("excludedItems",
+                List.of()
+                , e -> e instanceof String && ((String) e).contains(":"));
 
         builder.comment("Should applying treasure enchants be excluded, default:false");
         excludeTreasure = builder.define("excludeTreasure", false);
